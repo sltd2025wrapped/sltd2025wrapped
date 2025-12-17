@@ -1,4 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>SLTĐ 2025 Wrapped</title>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      padding: 40px;
+      background-color: #4b000f; /* đỏ rượu */
+      color: #f5e7c6; /* beige */
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-family: "Times New Roman", serif;
+      font-size: 18px;
+      background-color: #ffffffd8;
+      border-radius: 6px;
+      border: none;
+    }
+
+    h2, p {
+      font-size: 22px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 14px 26px;
+      font-size: 18px;
+      font-family: "Times New Roman", serif;
+      background-color: #f5e7c6;
+      color: #4b000f;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background-color: #e4d8bc;
+    }
+  </style>
+</head>
+
+<body>
+<h2>Chào mừng bạn đã đến với SLTĐ 2025's Wrapped!</h2>
+<p>Hãy đưa ra lựa chọn của bản thân nhé</p>
+
 <form id="wrappedForm">
+
   <p><strong>1. Khoảnh khắc rung động nhất trong năm 2025?</strong></p>
   <textarea name="best_moment" rows="3"></textarea>
 
@@ -24,6 +75,7 @@
   <textarea name="editor2" rows="2"></textarea>
 
   <button type="submit">Gửi câu trả lời</button>
+
 </form>
 
 <script>
@@ -39,7 +91,13 @@
       method: "POST",
       body: JSON.stringify(data)
     })
-    .then(res => alert("Gửi thành công!"))
-    .catch(err => alert("Lỗi, thử lại!"));
+    .then(res => {
+      alert("Gửi thành công!");
+      document.getElementById("wrappedForm").reset();
+    })
+    .catch(err => alert("Lỗi khi gửi, vui lòng thử lại!"));
   });
 </script>
+
+</body>
+</html>
