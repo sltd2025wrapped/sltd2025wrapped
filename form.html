@@ -7,8 +7,8 @@
     body {
       font-family: "Times New Roman", serif;
       padding: 40px;
-      background-color: #4b000f; /* đỏ rượu */
-      color: #f5e7c6; /* beige */
+      background-color: #4b000f;
+      color: #f5e7c6;
       font-size: 30px;
       line-height: 1.6;
     }
@@ -42,10 +42,10 @@
     }
   </style>
 </head>
-
 <body>
+
 <h2>Chào mừng bạn đã đến với SLTĐ 2025's Wrapped!</h2>
-<p>Hãy đưa ra lựa chọn của bản thân nhé</p>
+<p>Hãy điền câu trả lời phù hợp nhất với bạn nhé.</p>
 
 <form id="wrappedForm">
   <p><strong>1. Khoảnh khắc rung động nhất trong năm 2025?</strong></p>
@@ -73,7 +73,7 @@
 </form>
 
 <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxefCfJvJp54A47mIVuJZmbvRFg4Dj7Grpm00FThhN1WDz0Z3DGhPrYrAt8t4wAhGvY/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxxr3wOHLnkG5WI4TOP16WQwG5sk0CcCnM52JVkIRUmJcEwAc1tq6yBd-prJNAIrqaU/exec"; // dán link Web App vào đây
 
   document.getElementById("wrappedForm").addEventListener("submit", function(e){
     e.preventDefault();
@@ -83,13 +83,16 @@
 
     fetch(scriptURL, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(data)
     })
-    .then(res => {
+    .then(() => {
       alert("Gửi thành công!");
-      document.getElementById("wrappedForm").reset();
+      this.reset();
     })
-    .catch(err => alert("Lỗi khi gửi, vui lòng thử lại!"));
+    .catch(() => alert("Lỗi khi gửi, vui lòng thử lại!"));
   });
 </script>
 
