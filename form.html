@@ -1,81 +1,45 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>SLTĐ 2025's Wrapped</title>
-  <style>
-    body {
-      font-family: "Times New Roman", serif;
-      padding: 40px;
-      background-color: #4b000f; /* đỏ rượu */
-      color: #f5e7c6; /* beige */
-      font-size: 20px;
-      line-height: 1.6;
-    }
-    textarea {
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      font-family: "Times New Roman", serif;
-      font-size: 18px;
-      background-color: #ffffffd8;
-      border-radius: 6px;
-      border: none;
-    }
-    button {
-      margin-top: 25px;
-      padding: 14px 26px;
-      font-size: 20px;
-      font-family: "Times New Roman", serif;
-      background-color: #f5e7c6;
-      color: #4b000f;
-      border: none;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-    button:hover {
-      background-color: #e4d8bc;
-    }
-    h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-
-<body>
-<h2>Chào mừng bạn đã đến với SLTĐ 2025's Wrapped!</h2>
-<p>Hãy đưa ra lựa chọn của bản thân nhé</p>
-
-<!-- FORM gửi đến Formspree -->
-<form action="https://formspree.io/f/mrbnnvwr" method="POST">
-
+<form id="wrappedForm">
   <p><strong>1. Khoảnh khắc rung động nhất trong năm 2025?</strong></p>
-  <textarea name="moment_2025" rows="4"></textarea>
+  <textarea name="best_moment" rows="3"></textarea>
 
   <p><strong>2. Artist của năm đối với bạn là ai?</strong></p>
-  <textarea name="artist_2025" rows="3"></textarea>
+  <textarea name="artist" rows="2"></textarea>
 
   <p><strong>3. Writer của năm đối với bạn là ai?</strong></p>
-  <textarea name="writer_2025" rows="3"></textarea>
+  <textarea name="writer" rows="2"></textarea>
 
   <p><strong>4. Editor của năm đối với bạn là ai?</strong></p>
-  <textarea name="editor_2025" rows="3"></textarea>
+  <textarea name="editor" rows="2"></textarea>
 
   <p><strong>5. Bức fanart couple của năm đối với bạn là bức nào?</strong></p>
-  <textarea name="fanart_2025" rows="4"></textarea>
+  <textarea name="fanart" rows="3"></textarea>
 
   <p><strong>6. Fanfic của năm đối với bạn là fic nào?</strong></p>
-  <textarea name="fanfic_2025" rows="4"></textarea>
+  <textarea name="fanfic" rows="3"></textarea>
 
   <p><strong>7. Màn tương tác online của năm đối với bạn?</strong></p>
-  <textarea name="interaction_2025" rows="4"></textarea>
+  <textarea name="interaction" rows="3"></textarea>
 
   <p><strong>8. Editor của năm đối với bạn là ai?</strong></p>
-  <textarea name="editor_again_2025" rows="3"></textarea>
+  <textarea name="editor2" rows="2"></textarea>
 
   <button type="submit">Gửi câu trả lời</button>
 </form>
 
-</body>
-</html>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyutf04ViyqAGDnE-BInfX-Rk3LKBUvF5H3Jc3ip0miLoeNtladkrbD0sF2zvQzTg1L/exec";
+
+  document.getElementById("wrappedForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(res => alert("Gửi thành công!"))
+    .catch(err => alert("Lỗi, thử lại!"));
+  });
+</script>
