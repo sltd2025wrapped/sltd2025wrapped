@@ -42,12 +42,12 @@
     }
   </style>
 </head>
-<body>
 
+<body>
 <h2>Chào mừng bạn đã đến với SLTĐ 2025's Wrapped!</h2>
 <p>Hãy điền câu trả lời phù hợp nhất với bạn nhé.</p>
 
-<form id="wrappedForm">
+<form action="https://webhook.site/cdfbdc61-5422-4c0f-b359-303ba939633e" method="POST">
   <p><strong>1. Khoảnh khắc rung động nhất trong năm 2025?</strong></p>
   <textarea name="moment_2025" rows="4"></textarea>
 
@@ -71,30 +71,6 @@
 
   <button type="submit">Gửi câu trả lời</button>
 </form>
-
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbziT4yH88NkKPgx9EoTSU4RZpqGi57lAfe43mGFA5cD3qW5hD4-vKmFO2q5oe1JBHE4/exec"; // dán link Web App vào đây
-
-  document.getElementById("wrappedForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-
-    fetch(scriptURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(() => {
-      alert("Gửi thành công!");
-      this.reset();
-    })
-    .catch(() => alert("Lỗi khi gửi, vui lòng thử lại!"));
-  });
-</script>
 
 </body>
 </html>
