@@ -5,82 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Song Lời Tự Định 2025's Quiz</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #7a1e2e, #4b000f 75%);
-  font-family: "Inter", sans-serif;
-  color: #f5e7c6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  min-height:100vh;
+  background: radial-gradient(circle at top, #7a1e32, #3b0813 75%);
+  font-family:"Libre Baskerville", serif;
+  color:#f5e7c6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
 }
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+body::before{ /* sparkle */
+  content:"";
+  position:fixed;
+  inset:0;
   background-image:
     radial-gradient(#f5e7c644 1px, transparent 1px),
     radial-gradient(#f5e7c622 1px, transparent 1px);
-  background-size: 120px 120px, 200px 200px;
-  animation: sparkle 22s linear infinite;
-  pointer-events: none;
+  background-size:120px 120px,200px 200px;
+  animation:sparkle 20s linear infinite;
 }
-@keyframes sparkle {
-  to { background-position: 800px 1400px, -1000px 600px; }
+@keyframes sparkle{
+  from{background-position:0 0,0 0}
+  to{background-position:800px 1400px,-1000px 600px}
 }
-.box {
-  width: min(92vw, 720px);
-  background: rgba(40, 5, 12, 0.9);
-  border-radius: 28px;
-  padding: 50px 40px;
+.box{
+  width:min(92vw,680px);
+  background:rgba(30,5,10,.88);
+  padding:48px 36px;
+  border-radius:26px;
 }
-h1 {
-  font-family: "Cormorant Garamond", serif;
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 40px;
+h1{
+  font-family:"Cinzel", serif;
+  text-align:center;
+  font-size:34px;
+  margin-bottom:40px;
 }
-.question {
-  margin-bottom: 32px;
-  padding: 24px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.05);
+.question{
+  background:rgba(255,255,255,.05);
+  padding:22px;
+  border-radius:18px;
+  margin-bottom:32px;
 }
-.question strong {
-  font-size: 22px;
+.question p strong{
+  font-size:22px;
 }
-.hint {
-  font-size: 14px;
-  opacity: 0.75;
+.question em{
+  font-size:16px;
+  opacity:.8;
 }
-label {
-  display: block;
-  margin: 10px 0;
-  font-size: 18px;
+label{display:block;margin:8px 0;font-size:18px}
+input[type=text]{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  font-size:18px;
+  font-family:"Libre Baskerville", serif;
 }
-input[type="text"] {
-  width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 12px;
-  border: none;
-}
-button {
-  width: 100%;
-  margin-top: 30px;
-  padding: 18px;
-  font-size: 20px;
-  font-family: "Cormorant Garamond", serif;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(135deg, #f5e7c6, #d8c48f);
-  color: #4b000f;
+button{
+  width:100%;
+  padding:18px;
+  font-size:20px;
+  font-family:"Cinzel", serif;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f5e7c6,#d8c48f);
 }
 </style>
 </head>
@@ -91,18 +85,16 @@ button {
 
 <form id="quizForm">
 <div class="question">
-<strong>1. Con số gây chấn động shipdom?</strong><br>
-<span class="hint">Hint: Micro</span>
-<label><input type="radio" name="q1" value="A"> A. 3325</label>
-<label><input type="radio" name="q1" value="B"> B. 8992</label>
-<label><input type="radio" name="q1" value="C"> C. 2711</label>
-<label><input type="radio" name="q1" value="D"> D. 1506</label>
+<p><strong>1. Con số gây chấn động shipdom?</strong><br><em>Hint: Micro</em></p>
+<label><input type="radio" name="q1" value="A"> 3325</label>
+<label><input type="radio" name="q1" value="B"> 8992</label>
+<label><input type="radio" name="q1" value="C"> 2711</label>
+<label><input type="radio" name="q1" value="D"> 1506</label>
 </div>
 
 <div class="question">
-<strong>2. Điền vào chỗ trống</strong><br><br>
-“Đỉnh ... với em không?” – “iu ... hok?”
-<input type="text" name="q2" placeholder="Điền 1–3 từ">
+<p><strong>2. Điền vào chỗ trống:</strong><br>“Đỉnh ... với em không?” – “iu ... hok?”</p>
+<input name="q2" placeholder="Nhập đáp án">
 </div>
 
 <button type="submit">SUBMIT</button>
@@ -110,13 +102,13 @@ button {
 </div>
 
 <script>
-document.getElementById("quizForm").addEventListener("submit", function(e) {
+document.getElementById("quizForm").onsubmit=e=>{
   e.preventDefault();
-  const q1 = document.querySelector('input[name="q1"]:checked')?.value || "";
-  const q2 = document.querySelector('input[name="q2"]').value.trim().toLowerCase();
-  localStorage.setItem("quizAnswers", JSON.stringify({ q1, q2 }));
-  window.location.href = "result.html";
-});
+  const q1=document.querySelector('input[name="q1"]:checked')?.value||"";
+  const q2=document.querySelector('[name="q2"]').value.trim().toLowerCase();
+  localStorage.setItem("quiz",JSON.stringify({q1,q2}));
+  location.href="result.html";
+}
 </script>
 </body>
 </html>
