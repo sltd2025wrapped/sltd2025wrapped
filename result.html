@@ -2,33 +2,66 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kết quả</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#7a1e32,#3b0813 75%);
-font-family:"Libre Baskerville",serif;color:#f5e7c6;display:flex;justify-content:center;align-items:center}
-.box{background:rgba(30,5,10,.88);padding:48px;border-radius:26px;width:min(92vw,600px);text-align:center}
-h1{font-family:"Cinzel",serif;font-size:36px}
-.score{font-size:48px;margin:20px 0}
-.explain{margin-top:20px;font-size:18px;line-height:1.6}
-button{margin-top:30px;padding:14px 26px;font-family:"Cinzel",serif;border:none;border-radius:14px}
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#6a1627,#3b0813 75%);
+  font-family:"Playfair Display",serif;
+  color:#f5e7c6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.box{
+  width:min(92vw,680px);
+  background:rgba(30,5,10,.88);
+  padding:48px 36px;
+  border-radius:26px;
+  text-align:center;
+}
+.score{font-size:56px;margin-bottom:20px;}
+.explain{text-align:left;font-size:18px;}
+button{
+  margin-top:30px;
+  padding:16px 30px;
+  font-size:20px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f5e7c6,#d8c48f);
+  cursor:pointer;
+}
 </style>
 </head>
+
 <body>
 <div class="box">
 <h1>KẾT QUẢ</h1>
 <div class="score" id="score"></div>
 <div class="explain" id="explain"></div>
-<button onclick="location.href='thankyou.html'">SUBMIT</button>
+<button onclick="go()">SUBMIT</button>
 </div>
 
 <script>
-const a=JSON.parse(localStorage.getItem("quiz")||"{}");
-let s=0,exp="";
-if(a.q1==="A"){s++}else{exp+="<p>❌ Câu 1: đáp án đúng là <b>3325</b>. Vui lòng check lại sự kiện bùng nổ tại concert ATVNCG Day 6 nha!</p>"}
-if(a.q2==="nhất"){s++}else{exp+="<p>❌ Câu 2: đáp án là <b>nhất</b>. Vui lòng check lại comment của anh Jun trên YouTube và Threads nha!</p>"}
-document.getElementById("score").innerText=`${s}/2`;
-document.getElementById("explain").innerHTML=exp||"<p>✨ Xinh lời con giỏi quá! ✨</p>";
+const a=JSON.parse(localStorage.getItem("quizAnswers")||"{}");
+let s=0,html="";
+
+if(a.q1==="A"){s++;}else{
+html+="<p>❌ Câu 1 sai – đáp án đúng: <strong>A. 3325</strong>. Vui lòng check lại sự kiện bùng nổ tại concert ATVNCG Day 6 nhé!</p>";
+}
+if(a.q2==="nhất"){s++;}else{
+html+="<p>❌ Câu 2 sai – đáp án đúng: <strong>nhất</strong>. Vui lòng check lại comment của anh Jun trên YouTube và Threads nhé!</p>";
+}
+
+document.getElementById("score").innerText=s+"/2";
+document.getElementById("explain").innerHTML=html||"<p>✨ Xinh lời con này giỏi quá!</p>";
+
+function go(){window.location.href="thankyou.html";}
 </script>
 </body>
 </html>
