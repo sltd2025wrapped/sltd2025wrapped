@@ -2,66 +2,135 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kết quả</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  min-height:100vh;
-  background:radial-gradient(circle at top,#6a1627,#3b0813 75%);
-  font-family:"Playfair Display",serif;
-  color:#f5e7c6;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #7a1e2e, #4b000f 75%);
+  font-family: "Inter", sans-serif;
+  color: #f5e7c6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.box{
-  width:min(92vw,700px);
-  background:rgba(30,5,10,.9);
-  padding:48px;
-  border-radius:26px;
+
+/* sparkle */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(#f5e7c644 1px, transparent 1px),
+    radial-gradient(#f5e7c622 1px, transparent 1px);
+  background-size: 120px 120px, 200px 200px;
+  animation: sparkle 22s linear infinite;
+  pointer-events: none;
 }
-h1{text-align:center;font-family:"Cinzel",serif}
-.correct{color:#9dffb0}
-.wrong{color:#ffb3b3}
-button{
-  margin-top:30px;
-  width:100%;
-  padding:16px;
-  font-family:"Cinzel",serif;
-  border:none;
-  border-radius:14px;
-  cursor:pointer;
-  background:linear-gradient(135deg,#f5e7c6,#d8c48f);
+@keyframes sparkle {
+  to { background-position: 800px 1400px, -1000px 600px; }
+}
+
+.box {
+  width: min(92vw, 720px);
+  background: rgba(40, 5, 12, 0.9);
+  border-radius: 28px;
+  padding: 56px 44px;
+  text-align: center;
+  box-shadow: 0 0 80px rgba(245,231,198,0.18);
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 46px;
+  margin-bottom: 18px;
+}
+
+.score {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 64px;
+  margin: 20px 0 30px;
+  letter-spacing: 1px;
+}
+
+.explain {
+  text-align: left;
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.explain p {
+  margin-bottom: 14px;
+}
+
+button {
+  margin-top: 34px;
+  padding: 18px 34px;
+  font-size: 20px;
+  font-family: "Cormorant Garamond", serif;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f5e7c6, #d8c48f);
+  color: #4b000f;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(245,231,198,0.35);
 }
 </style>
 </head>
 
 <body>
 <div class="box">
-<h1>KẾT QUẢ</h1>
-<div id="content"></div>
-<button onclick="location.href='thankyou.html'">TIẾP TỤC</button>
+  <h1>KẾT QUẢ</h1>
+  <div class="score" id="score"></div>
+  <div class="explain" id="explain"></div>
+  <button onclick="location.href='thankyou.html'">SUBMIT</button>
 </div>
 
 <script>
-const data = JSON.parse(localStorage.getItem("quizResult"));
-const c = document.getElementById("content");
+const answers = JSON.parse(localStorage.getItem("quizAnswers")) || {};
+let score = 0;
+let explainHTML = "";
 
-c.innerHTML = `
-<p><strong>Điểm:</strong> ${data.score}/2</p>
+/* ===== CÂU 1 ===== */
+if (answers.q1 === "A") {
+  score++;
+} else {
+  explainHTML += `
+    <p>❌ <strong>Câu 1:</strong> Đáp án đúng là <b>3325</b>.<br>
+    Hãy check lại sự kiện bùng nổ của concert ATVNCG Day 6 nhé!</p>
+  `;
+}
 
-<p class="${data.user.q1===data.correct.q1?'correct':'wrong'}">
-Câu 1: ${data.explain.q1}
-</p>
+/* ===== CÂU 2 ===== */
+if (answers.q2 === "nhất") {
+  score++;
+} else {
+  explainHTML += `
+    <p>❌ <strong>Câu 2:</strong> Đáp án đúng là <b>“nhất”</b>.<br>
+    Hãy check lại commnent của anh Jun trên YouTube và Threads nhé!</p>
+  `;
+}
 
-<p class="${data.user.q2===data.correct.q2?'correct':'wrong'}">
-Câu 2: ${data.explain.q2}
-</p>
-`;
+/* ===== HIỂN THỊ ===== */
+document.getElementById("score").innerText = score + " / 2";
+
+/* Nếu KHÔNG có câu sai */
+if (explainHTML === "") {
+  explainHTML = `<p>✨ Xinh lời con này giỏi quá!</p>`;
+}
+
+document.getElementById("explain").innerHTML = explainHTML;
 </script>
 </body>
 </html>
