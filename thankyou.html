@@ -1,134 +1,98 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thank You</title>
 
-  <!-- Fonts (đồng bộ) -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top, #6a1426, #3f0b16 72%);
+      background: radial-gradient(circle at top, #6a1627, #3b0813 75%);
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: "Playfair Display", serif;
       color: #f5e7c6;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
     }
 
-    /* Sparkle background */
+    /* Sparkle animation */
     body::before {
       content: "";
-      position: absolute;
+      position: fixed;
       inset: 0;
       background-image:
-        radial-gradient(#f5e7c655 1px, transparent 1px),
-        radial-gradient(#f5e7c633 1px, transparent 1px);
-      background-size: 140px 140px, 200px 200px;
+        radial-gradient(#f5e7c644 1px, transparent 1px),
+        radial-gradient(#f5e7c622 1px, transparent 1px);
+      background-size: 140px 140px, 220px 220px;
       animation: sparkle 22s linear infinite;
       pointer-events: none;
     }
 
     @keyframes sparkle {
       from { background-position: 0 0, 0 0; }
-      to { background-position: 800px 1200px, -900px 700px; }
+      to { background-position: 900px 1500px, -1100px 700px; }
     }
 
     .box {
-      position: relative;
-      background: rgba(35, 6, 12, 0.86);
-      border: 1px solid #d8c48f66;
-      box-shadow: 0 0 70px rgba(245,231,198,0.18);
-      border-radius: 26px;
-      padding: 60px 42px 52px;
+      background: rgba(30, 5, 10, 0.88);
+      padding: 60px 40px;
+      border-radius: 28px;
+      box-shadow: 0 0 80px rgba(245,231,198,0.18);
       width: min(92vw, 520px);
-      animation: fadeUp 1.2s ease;
+      animation: fadeUp 1s ease;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
       font-family: "Cinzel", serif;
-      font-size: 42px;
-      margin-bottom: 18px;
+      font-size: 38px;
+      margin-bottom: 20px;
       letter-spacing: 1px;
     }
 
     p {
-      font-size: 22px;
-      line-height: 1.6;
+      font-size: 20px;
+      margin-bottom: 36px;
       opacity: 0.95;
-      margin-bottom: 34px;
     }
 
-    .btn {
+    a.button {
       display: inline-block;
-      padding: 16px 36px;
-      font-size: 20px;
-      border-radius: 16px;
+      padding: 16px 34px;
+      font-size: 18px;
       font-family: "Cinzel", serif;
+      border-radius: 16px;
+      text-decoration: none;
       background: linear-gradient(135deg, #f5e7c6, #d8c48f);
       color: #3b0813;
-      text-decoration: none;
       transition: all 0.3s ease;
     }
 
-    .btn:hover {
+    a.button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(245,231,198,0.4);
-    }
-
-    /* Fireworks / spark burst */
-    .spark {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #f5e7c6;
-      border-radius: 50%;
-      animation: burst 1.6s ease-out infinite;
-      opacity: 0;
-    }
-
-    @keyframes burst {
-      0% { transform: scale(0); opacity: 1; }
-      100% { transform: scale(4); opacity: 0; }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 34px; }
-      p { font-size: 20px; }
+      box-shadow: 0 14px 34px rgba(245,231,198,0.35);
     }
   </style>
 </head>
 
 <body>
-  <div class="box">
-    <h1>THANK YOU ✨</h1>
-    <p>
-      Cảm ơn bạn vì đã không lung lay!
-    </p>
-    <a href="index.html" class="btn">QUAY LẠI TRANG ĐẦU</a>
-  </div>
+<div class="box">
+<h2>CẢM ƠN BẠN VÌ ĐÃ KHÔNG LUNG LAY!</h2>
+<p>Bạn đã đi hết hành trình Song Lời Tự Định 2025.</p>
 
-  <!-- Spark burst effect -->
-  <script>
-    for (let i = 0; i < 12; i++) {
-      const s = document.createElement("div");
-      s.className = "spark";
-      s.style.left = Math.random() * 100 + "%";
-      s.style.top = Math.random() * 100 + "%";
-      s.style.animationDelay = Math.random() * 1.5 + "s";
-      document.body.appendChild(s);
-    }
-  </script>
+    <!-- QUAY LẠI TRANG ĐẦU -->
+    <a href="index.html" class="button">QUAY LẠI TRANG ĐẦU</a>
+  </div>
 </body>
 </html>
