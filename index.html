@@ -1,102 +1,136 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mật mã truy cập</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mật mã truy cập</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
 
-<style>
-body{
-  margin:0;
-  height:100vh;
-  background:radial-gradient(circle at top,#7a1b2d,#4b000f 70%);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:"Playfair Display",serif;
-  color:#f5e7c6;
-  overflow:hidden;
-}
-body::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    radial-gradient(#f5e7c655 1px,transparent 1px),
-    radial-gradient(#f5e7c633 1px,transparent 1px);
-  background-size:120px 120px,180px 180px;
-  animation:sparkle 18s linear infinite;
-}
-@keyframes sparkle{
-  to{background-position:600px 1200px,-800px 600px}
-}
-.box{
-  background:rgba(60,10,20,.85);
-  border:1px solid #d8c48f55;
-  border-radius:22px;
-  padding:48px 36px;
-  width:min(92vw,420px);
-  text-align:center;
-  box-shadow:0 0 60px rgba(245,231,198,.18);
-  animation:fadeUp 1s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-}
-h3{
-  font-family:"Cinzel",serif;
-  font-size:30px;
-}
-.hint{
-  font-size:15px;
-  opacity:.85;
-  margin-bottom:22px;
-}
-input{
-  width:100%;
-  padding:16px;
-  border-radius:14px;
-  border:none;
-  text-align:center;
-  font-size:18px;
-}
-button{
-  margin-top:22px;
-  width:100%;
-  padding:16px;
-  font-family:"Cinzel",serif;
-  font-size:20px;
-  background:linear-gradient(135deg,#f5e7c6,#d8c48f);
-  border:none;
-  border-radius:14px;
-  cursor:pointer;
-}
-.error{
-  margin-top:16px;
-  color:#ffcccc;
-}
-</style>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #6a1326, #43101a 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Playfair Display", serif;
+      color: #f5e7c6;
+      overflow: hidden;
+    }
+
+    /* Sparkles – KHÔNG CHẶN CLICK */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(#f5e7c655 1px, transparent 1px),
+        radial-gradient(#f5e7c633 1px, transparent 1px);
+      background-size: 120px 120px, 180px 180px;
+      animation: sparkle 18s linear infinite;
+      pointer-events: none; /* 🔥 CỰC QUAN TRỌNG */
+      z-index: 0;
+    }
+
+    @keyframes sparkle {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 600px 1200px, -800px 600px; }
+    }
+
+    .box {
+      position: relative;
+      z-index: 2; /* 🔥 NỔI LÊN TRÊN */
+      background: rgba(40, 8, 14, 0.9);
+      border: 1px solid #d8c48f55;
+      box-shadow: 0 0 60px rgba(245,231,198,0.18);
+      border-radius: 24px;
+      padding: 52px 38px;
+      width: min(92vw, 440px);
+      text-align: center;
+      animation: fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h3 {
+      font-family: "Cinzel", serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .hint {
+      font-size: 15px;
+      opacity: 0.85;
+      margin-bottom: 26px;
+    }
+
+    input {
+      width: 100%;
+      padding: 18px;
+      font-size: 18px;
+      border-radius: 16px;
+      border: none;
+      outline: none;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+    }
+
+    button {
+      margin-top: 26px;
+      width: 100%;
+      padding: 16px;
+      font-size: 20px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      font-family: "Cinzel", serif;
+      background: linear-gradient(135deg, #f5e7c6, #d8c48f);
+      color: #3b0813;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(245,231,198,0.35);
+    }
+
+    .error {
+      margin-top: 18px;
+      font-size: 15px;
+      color: #ffb3b3;
+      min-height: 20px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="box">
-  <h3>MẬT MÃ TRUY CẬP</h3>
-  <div class="hint">Hint: 4 chữ số</div>
-  <input id="code" placeholder="....">
-  <button onclick="check()">SUBMIT</button>
-  <div class="error" id="err"></div>
-</div>
+  <div class="box">
+    <h3>MẬT MÃ TRUY CẬP</h3>
+    <div class="hint">Hint: 4 chữ số</div>
 
-<script>
-function check(){
-  if(document.getElementById("code").value.trim()==="sinhnoitudong"){
-    location.href="quiz.html";
-  }else{
-    document.getElementById("err").innerText="Mật mã chưa đúng!";
-  }
-}
-</script>
+    <input type="text" id="code" placeholder="....">
+
+    <button onclick="checkCode()">SUBMIT</button>
+    <div class="error" id="error"></div>
+  </div>
+
+  <script>
+    function checkCode() {
+      const input = document.getElementById("code").value.trim().toLowerCase();
+      if (input === "8992") {
+        window.location.href = "quiz.html";
+      } else {
+        document.getElementById("error").innerText =
+          "Mật mã chưa đúng! Vui lòng thử lại.";
+      }
+    }
+  </script>
 </body>
 </html>
