@@ -5,33 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Song Lời Tự Định 2025's Quiz</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
   min-height:100vh;
-  background: radial-gradient(circle at top, #7a1e32, #3b0813 75%);
-  font-family:"Libre Baskerville", serif;
+  background:radial-gradient(circle at top,#6a1627,#3b0813 75%);
+  font-family:"Playfair Display",serif;
   color:#f5e7c6;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
 }
-body::before{ /* sparkle */
+body::before{
   content:"";
   position:fixed;
   inset:0;
   background-image:
-    radial-gradient(#f5e7c644 1px, transparent 1px),
-    radial-gradient(#f5e7c622 1px, transparent 1px);
+    radial-gradient(#f5e7c644 1px,transparent 1px),
+    radial-gradient(#f5e7c622 1px,transparent 1px);
   background-size:120px 120px,200px 200px;
   animation:sparkle 20s linear infinite;
 }
 @keyframes sparkle{
-  from{background-position:0 0,0 0}
-  to{background-position:800px 1400px,-1000px 600px}
+  to{background-position:800px 1400px,-1000px 600px;}
 }
 .box{
   width:min(92vw,680px);
@@ -40,41 +38,37 @@ body::before{ /* sparkle */
   border-radius:26px;
 }
 h1{
-  font-family:"Cinzel", serif;
   text-align:center;
   font-size:34px;
-  margin-bottom:40px;
+  margin-bottom:36px;
 }
 .question{
   background:rgba(255,255,255,.05);
   padding:22px;
   border-radius:18px;
-  margin-bottom:32px;
+  margin-bottom:30px;
 }
-.question p strong{
+.question p{
   font-size:22px;
+  margin-bottom:12px;
 }
-.question em{
-  font-size:16px;
-  opacity:.8;
-}
-label{display:block;margin:8px 0;font-size:18px}
+.hint{font-size:15px;opacity:.85;}
+label{display:block;margin:8px 0;font-size:18px;}
 input[type=text]{
   width:100%;
   padding:14px;
   border-radius:12px;
   border:none;
   font-size:18px;
-  font-family:"Libre Baskerville", serif;
 }
 button{
   width:100%;
   padding:18px;
   font-size:20px;
-  font-family:"Cinzel", serif;
   border:none;
   border-radius:16px;
   background:linear-gradient(135deg,#f5e7c6,#d8c48f);
+  cursor:pointer;
 }
 </style>
 </head>
@@ -85,16 +79,18 @@ button{
 
 <form id="quizForm">
 <div class="question">
-<p><strong>1. Con số gây chấn động shipdom?</strong><br><em>Hint: Micro</em></p>
-<label><input type="radio" name="q1" value="A"> 3325</label>
-<label><input type="radio" name="q1" value="B"> 8992</label>
-<label><input type="radio" name="q1" value="C"> 2711</label>
-<label><input type="radio" name="q1" value="D"> 1506</label>
+<p><strong>1. Con số gây chấn động shipdom?</strong></p>
+<div class="hint">Hint: Micro</div>
+<label><input type="radio" name="q1" value="A"> A. 3325</label>
+<label><input type="radio" name="q1" value="B"> B. 8992</label>
+<label><input type="radio" name="q1" value="C"> C. 2711</label>
+<label><input type="radio" name="q1" value="D"> D. 1506</label>
 </div>
 
 <div class="question">
-<p><strong>2. Điền vào chỗ trống:</strong><br>“Đỉnh ... với em không?” – “iu ... hok?”</p>
-<input name="q2" placeholder="Nhập đáp án">
+<p><strong>2. Điền vào chỗ trống</strong></p>
+<p>“Đỉnh ... với em không?” – “iu ... hok?”</p>
+<input type="text" name="q2" placeholder="1–3 từ">
 </div>
 
 <button type="submit">SUBMIT</button>
@@ -102,12 +98,19 @@ button{
 </div>
 
 <script>
-document.getElementById("quizForm").onsubmit=e=>{
+document.getElementById("quizForm").onsubmit=function(e){
   e.preventDefault();
-  const q1=document.querySelector('input[name="q1"]:checked')?.value||"";
-  const q2=document.querySelector('[name="q2"]').value.trim().toLowerCase();
-  localStorage.setItem("quiz",JSON.stringify({q1,q2}));
-  location.href="result.html";
+
+  var radios=document.getElementsByName("q1");
+  var q1="";
+  for(var i=0;i<radios.length;i++){
+    if(radios[i].checked){ q1=radios[i].value; }
+  }
+
+  var q2=document.querySelector('input[name="q2"]').value.trim().toLowerCase();
+
+  localStorage.setItem("quizAnswers",JSON.stringify({q1:q1,q2:q2}));
+  window.location.href="result.html";
 }
 </script>
 </body>
